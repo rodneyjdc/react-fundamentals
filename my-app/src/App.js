@@ -12,45 +12,65 @@ class App extends React.Component {
 
   handleInputChange = (event) => {
     this.setState({
-      [event.target.name]: event.target.value,
-
+      inputValue: event.target.value
     })
   }
-
-  resetForm = (event) => {
-    this.setState({
-      [event.target.value]: "",
-      //[event.target.placeholder]: "",
-      fullName: ""
-    })
-  }
-
-  // submitForm = () => {
-  //   if (this.state.firstName && this.state.lastName && this.state.username && this.state.password) {
-  //     alert(`Welcome ${this.state.fullName}!`);
-  //   } else {
-  //     alert("Please enter the required fields")
-  //   } 
-  // }
 
   calculate = () => {
 
   }
+ 
+  add = () => {
+    let result = Number(this.state.total) + Number(this.state.inputValue);
 
-  
+    console.log("Total: ", result);
+    console.log("Val: ", result);
+    this.setState({
+      total: [result]
+    }); 
+  }
+
+  subtract = () => {
+    let result = Number(this.state.total) - Number(this.state.inputValue);
+
+    console.log("Total: ", result);
+    console.log("Val: ", result);
+    this.setState({
+      total: [result]
+    }); 
+  }
+
+  divide = () => {
+    let result = Number(this.state.total) / Number(this.state.inputValue);
+
+    console.log("Total: ", result);
+    console.log("Val: ", result);
+    this.setState({
+      total: [result]
+    }); 
+  }
+
+  multiply = () => {
+    let result = Number(this.state.total) * Number(this.state.inputValue);
+
+    console.log("Total: ", result);
+    console.log("Val: ", result);
+    this.setState({
+      total: [result]
+    }); 
+  }
+
 
   render() {
-    return el("form", {id: "calcForm", onSubmit: this.calculate}, 
+    return el("form", {id: "calcForm"}, 
       el("p", {name: "result"}, this.state.total),
-      el("input", {name: "input", placeholder: "input", onChange: this.handleInputChange}, null),
+      el("input", {name: "inputValue", placeholder: "input", onChange: this.handleInputChange}, null),
       el("div", null,
-        el("button", {name: "resetForm", onClick: this.add}, "Add"),
-        el("button", {name: "resetForm", onClick: this.subtract}, "Subtract"),
-        el("button", {name: "resetForm", onClick: this.multiply}, "Multiply"),
-        el("button", {name: "resetForm", onClick: this.divide}, "Divide"),
-      ),
-      el("button", {name: "submit", type: "submit"}, "Calculate")
-
+        el("button", {name: "add", type:"button", onClick: this.add}, "Add"),
+        el("button", {name: "subtract", type:"button", onClick: this.subtract}, "Subtract"),
+        el("button", {name: "multiply", type:"button", onClick: this.multiply}, "Multiply"),
+        el("button", {name: "divide", type:"button", onClick: this.divide}, "Divide"),
+      )
     );
   }
 }
